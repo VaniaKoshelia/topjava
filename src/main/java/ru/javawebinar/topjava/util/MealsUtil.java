@@ -35,6 +35,10 @@ public class MealsUtil {
         System.out.println(getFilteredWithExcessInOnePass2(MEALS, LocalTime.of(7, 0), LocalTime.of(12, 0), 2000));
     }
 
+    public static List<MealTo> getAllWithExcess(List<Meal> meals, int caloriesPerDay) {
+        return getFilteredWithExcess(meals, LocalTime.MIN, LocalTime.MAX, caloriesPerDay);
+    }
+
     public static List<MealTo> getFilteredWithExcess(List<Meal> meals, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
         Map<LocalDate, Integer> caloriesSumByDate = meals.stream()
                 .collect(
