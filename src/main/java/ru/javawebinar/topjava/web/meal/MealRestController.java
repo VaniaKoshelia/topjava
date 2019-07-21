@@ -6,9 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.service.MealService;
-import ru.javawebinar.topjava.to.MealTo;
-import ru.javawebinar.topjava.util.MealsUtil;
-import ru.javawebinar.topjava.web.SecurityUtil;
 
 import java.util.List;
 
@@ -23,8 +20,8 @@ public class MealRestController {
         return service.create(meal, userId);
     }
 
-    public void delete(Meal meal, int userId) {
-        service.delete(meal.getId(), userId);
+    public void delete(int id, int userId) {
+        service.delete(id, userId);
     }
 
     public Meal get(int id, int userId) {
@@ -35,6 +32,6 @@ public class MealRestController {
         service.update(meal, userId);
     }
 
-    public List<MealTo> getAll(int userId) { return MealsUtil.getWithExcess(service.getAll(userId), SecurityUtil.authUserCaloriesPerDay()); }
+    public List<Meal> getAll(int userId) { return service.getAll(userId); }
 
 }
